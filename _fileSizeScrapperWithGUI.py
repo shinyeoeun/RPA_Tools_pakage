@@ -17,7 +17,7 @@ class Ui_BuildFileSizeChecker(QWidget):
 
         # 윈도우 타이틀+테마
         BuildFileSizeChecker.setObjectName("BuildFileSizeChecker")
-        BuildFileSizeChecker.resize(777, 618)
+        BuildFileSizeChecker.resize(777, 580)
         # BuildFileSizeChecker.setStyleSheet(open("lib/style.qss", "r").read())
         #BuildFileSizeChecker.setAutoFillBackground(True)
         self.centralwidget = QtWidgets.QWidget(BuildFileSizeChecker)
@@ -64,7 +64,7 @@ class Ui_BuildFileSizeChecker(QWidget):
 
         # 실행버튼
         self.ExecuteBtn = QtWidgets.QPushButton(self.centralwidget)
-        self.ExecuteBtn.setGeometry(QtCore.QRect(160, 560, 171, 23))
+        self.ExecuteBtn.setGeometry(QtCore.QRect(100, 490, 171, 60))
         self.ExecuteBtn.setObjectName("ExecuteBtn")
 
         # 파일사이즈 로우데이터
@@ -86,28 +86,7 @@ class Ui_BuildFileSizeChecker(QWidget):
         self.FileSizeAndroidTextField.setGeometry(QtCore.QRect(10, 20, 161, 311))
         self.FileSizeAndroidTextField.setObjectName("FileSizeAndroidTextField")
 
-        # 타겟플렛폼
-        self.TargetPlatform = QtWidgets.QGroupBox(self.centralwidget)
-        self.TargetPlatform.setGeometry(QtCore.QRect(30, 489, 301, 61))
-        self.TargetPlatform.setObjectName("TargetPlatform")
-        # 타겟플렛폼 체크박스:iOS
-        self.TargetPlatformIosCheckBox = QtWidgets.QCheckBox(self.TargetPlatform)
-        self.TargetPlatformIosCheckBox.setGeometry(QtCore.QRect(20, 30, 75, 16))
-        self.TargetPlatformIosCheckBox.setObjectName("TargetPlatformIosCheckBox")
-        # 타겟플렛폼 체크박스:Android
-        self.TargetPlatformAndroidCheckBox = QtWidgets.QCheckBox(self.TargetPlatform)
-        self.TargetPlatformAndroidCheckBox.setGeometry(QtCore.QRect(80, 30, 75, 16))
-        self.TargetPlatformAndroidCheckBox.setObjectName("TargetPlatformAndroidCheckBox")
-        # 내보내기:CSV
-        self.ExportToCsvBtn = QtWidgets.QPushButton(self.centralwidget)
-        self.ExportToCsvBtn.setGeometry(QtCore.QRect(590, 530, 171, 23))
-        self.ExportToCsvBtn.setObjectName("ExportToCsvBtn")
-        # 내보내기:Excel
-        self.ExportToExcel = QtWidgets.QPushButton(self.centralwidget)
-        self.ExportToExcel.setGeometry(QtCore.QRect(590, 560, 171, 23))
-        self.ExportToExcel.setObjectName("ExportToExcel")
         BuildFileSizeChecker.setCentralWidget(self.centralwidget)
-        # 스테이터스바 없애면 화면 어그러짐
         self.statusbar = QtWidgets.QStatusBar(BuildFileSizeChecker)
         self.statusbar.setObjectName("statusbar")
         BuildFileSizeChecker.setStatusBar(self.statusbar)
@@ -131,11 +110,6 @@ class Ui_BuildFileSizeChecker(QWidget):
         self.FileSizeRawDataGb.setTitle(_translate("BuildFileSizeChecker", "File Size Raw Data"))
         self.FileSizeIos.setTitle(_translate("BuildFileSizeChecker", "iOS"))
         self.FileSizeAndroid.setTitle(_translate("BuildFileSizeChecker", "Android"))
-        self.TargetPlatform.setTitle(_translate("BuildFileSizeChecker", "Target Platform"))
-        self.TargetPlatformIosCheckBox.setText(_translate("BuildFileSizeChecker", "iOS"))
-        self.TargetPlatformAndroidCheckBox.setText(_translate("BuildFileSizeChecker", "Android"))
-        self.ExportToCsvBtn.setText(_translate("BuildFileSizeChecker", "Export to CSV"))
-        self.ExportToExcel.setText(_translate("BuildFileSizeChecker", "Export to Excel"))
 
     @pyqtSlot()
     def executeBtn_on_click(self):
@@ -147,11 +121,10 @@ class Ui_BuildFileSizeChecker(QWidget):
         TARGET_URL = 'https://appdeploy.linecorp.com/'
         CONNECT_ID = self.idITextField.text()
         CONNECT_PW = self.pwTextField.text()
-
+        driver = webdriver.Chrome(DRIVER_PATH)
         # Target Build List
-        target_build_android = []
+        target_build_android = self.targetBuildAndroidTextField.toPlainText().split('\n')
         target_build_ios = self.targetBuildIosTextField.toPlainText().split('\n')
-
         # Android
         file_size_list_android = []
         file_size_list_android_raw_data = []
@@ -159,81 +132,71 @@ class Ui_BuildFileSizeChecker(QWidget):
         file_size_list_iOS = []
         file_size_list_iOS_raw_data = []
 
-        driver = webdriver.Chrome(DRIVER_PATH)
-
-        # App Deploy 접속
-        driver.get(TARGET_URL)
-        # 약관 동의
-        driver.find_element_by_class_name('agree-btn').click()
-        # 서비스 검색란 입력: yuki
-        driver.find_element_by_id("search").send_keys("yuki")
-        driver.find_element_by_id("search").send_keys(Keys.ENTER)
-        driver.implicitly_wait(3)
-        # 서비스 리스트 아코디언 요소 탭
-        WebDriverWait(driver, 20).until(EC.element_to_be_clickable(
-            (By.XPATH, '(.//*[normalize-space(text()) and normalize-space(.)="Public Service (0)"])[1]/following::div[5]')))
-        driver.find_element_by_xpath(
-            "(.//*[normalize-space(text()) and normalize-space(.)='Public Service (0)'])[1]/following::div[5]").click()
-        # 서비스 리스트 탭: yuki
-        WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH,
-                                                                         '(.//*[normalize-space(text()) and normalize-space(.)="Private Service (1)"])[1]/following::span[3]')))
-        driver.find_element_by_xpath(
-            "(.//*[normalize-space(text()) and normalize-space(.)='Private Service (1)'])[1]/following::span[3]").click()
-
-        # iPhone 데이터 취득
-        driver.get("https://appdeploy.linecorp.com/yuki/iphone/BETA")
-        time.sleep(2)
+        ##### web driver 조작 시작
+        driver.get(TARGET_URL)  # App Deploy 접속
+        # 약관동의
+        driver.find_element_by_class_name('agree-btn').click()  # 약관 동의
 
         for index in target_build_ios:
-            WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, 'search')))
-            driver.find_element_by_id("search").send_keys(index)
-            time.sleep(2)
-            WebDriverWait(driver, 20).until(EC.element_to_be_clickable(
-                (By.XPATH, '(.//*[normalize-space(text()) and normalize-space(.)="RELEASE"])[1]/following::span[1]')))
-            driver.find_element_by_xpath(
-                "(.//*[normalize-space(text()) and normalize-space(.)='RELEASE'])[1]/following::span[1]").click()
-            time.sleep(1)
-            WebDriverWait(driver, 20).until(EC.element_to_be_clickable(
-                (By.XPATH, '(.//*[normalize-space(text()) and normalize-space(.)="EFFECT -"])[2]/following::i[1]')))
-            driver.find_element_by_xpath(
-                "(.//*[normalize-space(text()) and normalize-space(.)='EFFECT -'])[2]/following::i[1]").click()
-            time.sleep(1)
+            print(index)
+            # 빌드페이지 1 접속
+            driver.get(TARGET_URL + "/download/yuki/iphone/" + index + "/beta/")
 
-            # 첫 다운로드시에만 커넥트 로그인
+            # 커넥트 로그인
             if index == target_build_ios[0]:
                 driver.find_element_by_id('uid').send_keys(CONNECT_ID)
                 driver.find_element_by_id('upw').send_keys(CONNECT_PW)
                 driver.find_element_by_id('loginBtn').click()
-                driver.implicitly_wait(5)
-            time.sleep(2)
+            driver.implicitly_wait(5)
 
+            # 빌드페이지 2 접속
+            driver.find_element_by_xpath("//*[@id='list']/tbody/tr[2]/td[1]/a").click()
             driver.implicitly_wait(5)
-            WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, 'list')))
-            table = driver.find_element_by_id('list')
-            table_data = table.text
+            # 테이블 텍스트 취득 > 파일사이즈 취득
+            table_data = driver.find_element_by_id('list').text
             file_size = table_data.split('sdk_size_ios.log')[1].split(' ')[1]
+            # Raw Data 저장
             file_size_list_iOS_raw_data.append(int(file_size))
-            time.sleep(1)
+            # 그래프표시용 값으로 변환 후 저장
             file_size_list_iOS.append(int(file_size[0:7]))
-            driver.get("https://appdeploy.linecorp.com/yuki/iphone/BETA")
+
+        # Android 데이터 취득
+        for index in target_build_android:
+            driver.get(TARGET_URL + "/download/yuki/android/" + index + "/beta/")
+
+            driver.find_element_by_xpath("//*[@id='list']/tbody/tr[2]/td[1]/a").click()
             driver.implicitly_wait(5)
+            table_data = driver.find_element_by_id('list').text
+            file_size = table_data.split('sdk_size_android.log')[1].split(' ')[1]
+            file_size_list_android_raw_data.append(int(file_size))
+            file_size_list_android.append(int(file_size[0:7]))
 
         driver.quit()
+        ##### web driver 조작 끝
 
-        # 데이터프레임 작성
-        data_ios = {'BuildVer': target_build_ios, 'ipaFileSize': file_size_list_iOS_raw_data}
-        df = pd.DataFrame(data_ios, columns=['BuildVer', 'ipaFileSize'])
-        print(df)
+        # Raw Data 데이터프레임 작성
+        data_android = {'Build ver.': target_build_android, 'File Size': file_size_list_android_raw_data}
+        df_android = pd.DataFrame(data_android, columns=['Build ver.', 'File Size'])
+        data_ios = {'Build ver.': target_build_ios, 'File Size': file_size_list_iOS_raw_data}
+        df_ios = pd.DataFrame(data_ios, columns=['Build ver.', 'File Size'])
 
-        self.FileSizeIosTextField.insertPlainText(df.to_string())
+        # Raw Data 화면출력
+        self.FileSizeIosTextField.insertPlainText(df_ios.to_string())
+        self.FileSizeAndroidTextField.insertPlainText(df_android.to_string())
 
         # 그래프 표시
         plt.figure(figsize=(15, 7))
         plt.style.use(['seaborn-dark'])
+        plt.title('yuki-Demo App file size')
+        plt.subplot(2, 1, 1)
+        plt.ylabel("ipa file size(MB)")
         plt.plot(target_build_ios, file_size_list_iOS, color='blue', marker='o', linestyle="--")
         plt.grid()
-        plt.title('yuki-Demo App file size')
-        plt.ylabel("ipa file size(MB)")
+        plt.subplot(2, 1, 2)
+        plt.ylabel("apk file size(MB)")
+        plt.plot(target_build_android, file_size_list_android, color='green', marker='o', linestyle="--")
+        plt.grid()
+        plt.xlabel('Build ver')
         plt.show()
 
 if __name__ == "__main__":

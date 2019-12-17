@@ -112,10 +112,8 @@ class _fileSizeScrapperWithoutGUI():
             WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.ID, 'search')))
             self.driver.find_element_by_id("search").send_keys(index)
             time.sleep(2)
-            WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable(
-                (By.XPATH, '(.//*[normalize-space(text()) and normalize-space(.)="RELEASE"])[1]/following::span[1]')))
-            self.driver.find_element_by_xpath(
-                "(.//*[normalize-space(text()) and normalize-space(.)='RELEASE'])[1]/following::span[1]").click()
+            WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.XPATH, '(.//*[normalize-space(text()) and normalize-space(.)="RELEASE"])[1]/following::span[1]')))
+            self.driver.find_element_by_xpath("xpath=(.//*[normalize-space(text()) and normalize-space(.)='RELEASE'])[1]/following::span[1]").click()
             time.sleep(1)
             WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable(
                 (By.XPATH, '(.//*[normalize-space(text()) and normalize-space(.)="EFFECT -"])[2]/following::i[1]')))
