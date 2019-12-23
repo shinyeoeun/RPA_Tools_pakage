@@ -138,7 +138,6 @@ class Ui_BuildFileSizeChecker(QWidget):
         driver.find_element_by_class_name('agree-btn').click()  # 약관 동의
 
         for index in target_build_ios:
-            print(index)
             # 빌드페이지 1 접속
             driver.get(TARGET_URL + "/download/yuki/iphone/" + index + "/beta/")
 
