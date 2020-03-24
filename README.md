@@ -10,8 +10,9 @@ Beautiful Soap
 ![2020-03-23_18h18_37](https://user-images.githubusercontent.com/25470405/77301296-c9397600-6d32-11ea-8d3e-b55cffeb5e09.png)
 
 ![ios_sdk_size](https://user-images.githubusercontent.com/25470405/77301454-0e5da800-6d33-11ea-8f47-6193169be974.png)
-![main](https://user-images.githubusercontent.com/25470405/77301421-fc7c0500-6d32-11ea-9ad4-c9c07a8c1c25.png)
-![2020-03-23_18h22_27](https://user-images.githubusercontent.com/25470405/77301592-47961800-6d33-11ea-963f-3f36e82d3cda.png)
+
+![2020-03-24_11h33_13](https://user-images.githubusercontent.com/25470405/77382276-50362f00-6dc3-11ea-9dc4-5093a3edfeaa.png)
+
 
 |module|Usage|
 |------|------|
