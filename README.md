@@ -3,7 +3,9 @@
 파이썬 최고
 
 ## 1. 빌드별 파일사이즈 측정 자동화
-파일사이즈의 변동을 모니터링하기 위해, 빌드배포 사이트에서 QA빌드와 기존배포빌드의 파일사이즈값을 취득하여 그래프로 표시해주는 프로그램
+앱 파일사이즈(apk/ipa)의 변동을 모니터링하기 위해<br/>
+빌드배포 사이트에서 QA빌드와 기존배포빌드의 파일사이즈값을 취득하여 그래프로 표시해주는 프로그램<br/>
+사실 android-apk-size-watcher같은 젠킨스 플러그인 쓰면 되지만 RPA연습용으로   
 
 ### 1. 웹 크롤러 with GUI 
   + Using Tools: PyQt5, Selenium, Pyinstaller, PowerMockup, matplotlib, pandas
