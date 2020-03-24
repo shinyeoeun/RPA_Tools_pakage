@@ -7,7 +7,8 @@
 빌드배포 사이트에서 빌드의 파일사이즈값을 크롤링하여 그래프로 표시해주는 프로그램<br/>
 사실 android-apk-size-watcher같은 젠킨스 플러그인 쓰면 되지만 RPA연습용으로 작성  
 
-  + Using Tools: PyQt5, Selenium, Pyinstaller, PowerMockup, matplotlib, pandas
+* Using Tools
+  +  PyQt5, Selenium, Pyinstaller, PowerMockup, matplotlib, pandas
 
 ### Usage
 GUI 프로그램 실행파일(.exe) 클릭하여 아래와 같이 조작
