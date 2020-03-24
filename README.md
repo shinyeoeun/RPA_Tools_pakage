@@ -8,8 +8,6 @@
 ### 1. 웹 크롤러 with GUI 
   + Using Tools: PyQt5, Selenium, Pyinstaller, PowerMockup, matplotlib, pandas
 
-
-![2020-03-24_11h58_50](https://user-images.githubusercontent.com/25470405/77383763-1f57f900-6dc7-11ea-868a-63b321531093.png)
 ![2020-03-24_11h58_50](https://user-images.githubusercontent.com/25470405/77384067-d5234780-6dc7-11ea-9cbe-1d377b92ca5b.png)
 
 ### Demo
