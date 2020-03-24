@@ -18,9 +18,8 @@ GUI 프로그램 실행파일(.exe) 클릭하여 아래와 같이 조작
 
 ### Description
 와이어프래임 작성 후 GUI프로그램으로 패키징 하기까지의 흐름
+![2020-03-24_12h54_10](https://user-images.githubusercontent.com/25470405/77386618-90e77580-6dce-11ea-954f-7eba46c8f119.png)
 
-
-![2020-03-24_11h33_13](https://user-images.githubusercontent.com/25470405/77382276-50362f00-6dc3-11ea-9dc4-5093a3edfeaa.png)
 
 ### Trouble Shooting
 * PyDesigner 실행파일 경로
