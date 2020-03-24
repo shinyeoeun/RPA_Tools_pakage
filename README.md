@@ -4,19 +4,20 @@
 
 ## 1. 빌드별 파일사이즈 측정 자동화
 앱 파일사이즈(apk/ipa)의 변동을 모니터링하기 위해<br/>
-빌드배포 사이트에서 빌드의 파일사이즈값을 취득하여 그래프로 표시해주는 프로그램<br/>
-사실 android-apk-size-watcher같은 젠킨스 플러그인 쓰면 되지만 RPA연습용으로   
+빌드배포 사이트에서 빌드의 파일사이즈값을 크롤링하여 그래프로 표시해주는 프로그램<br/>
+사실 android-apk-size-watcher같은 젠킨스 플러그인 쓰면 되지만 RPA연습용으로 작성  
 
-### 1. 웹 크롤러 with GUI 
   + Using Tools: PyQt5, Selenium, Pyinstaller, PowerMockup, matplotlib, pandas
 
-![2020-03-24_11h58_50](https://user-images.githubusercontent.com/25470405/77384067-d5234780-6dc7-11ea-9cbe-1d377b92ca5b.png)
+### Usage
+GUI 프로그램 실행파일(.exe) 클릭하여 아래와 같이 조작
+![2020-03-24_12h48_37](https://user-images.githubusercontent.com/25470405/77386291-d35c8280-6dcd-11ea-8cd9-1b42f15362fa.png)
 
 ### Demo
 ![ezgif com-video-to-gif (1)](https://user-images.githubusercontent.com/25470405/77300000-b58d1000-6d30-11ea-98d9-eb412cd8724a.gif)
 
 ### Description
-![2020-03-23_18h18_37](https://user-images.githubusercontent.com/25470405/77301296-c9397600-6d32-11ea-8d3e-b55cffeb5e09.png)
+와이어프래임 작성 후 GUI프로그램으로 패키징 하기까지의 흐름
 
 
 ![2020-03-24_11h33_13](https://user-images.githubusercontent.com/25470405/77382276-50362f00-6dc3-11ea-9dc4-5093a3edfeaa.png)
