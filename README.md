@@ -36,7 +36,7 @@ GUI 프로그램 실행파일(.exe) 클릭하여 아래와 같이 조작
    ```
     
   + pyqt 버튼이벤트 작성방법<br/>
-    디자이너에서 생성된 코드를 동작시키려면 @pyqtSlot으로 event lisner를 작성해서 이벤트를 버튼에 연결시켜 줘야함
+    디자이너에서 생성된 코드를 동작시키려면 @pyqtSlot으로 event lisner를 작성해서 버튼에 연결시켜 줘야함
    ```python
       # 실행버튼 이벤트 
       @pyqtSlot()
