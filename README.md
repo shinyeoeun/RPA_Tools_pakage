@@ -1,6 +1,9 @@
 # RPA Tools pakage
 반복노가다 업무 or 로그 분석업무등을 자동화하기 위한 시도들을 모아놓은 패키지<br/>
 
+* Tool List
+  + 1. 빌드별 파일사이즈 측정 자동화 
+  + 2. LINE api Log Parser
 
 ## 1. 빌드별 파일사이즈 측정 자동화
 앱 파일사이즈(apk/ipa)의 변동을 모니터링하기 위해<br/>
@@ -59,7 +62,7 @@ GUI 프로그램 실행파일(.exe) 클릭하여 아래와 같이 조작
   ※icon옵션지정으로 커스텀 이미지로 실행파일 아이콘변경도 가능
 
 
-## 2. Log Parser
+## 2. LINE api Log Parser
 LINE api 로그를 파싱하여 테스트에 필요한 데이터수집 후 csv파일로 출력하는 스크립트
   * Using Tools
     > parse
