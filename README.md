@@ -14,9 +14,6 @@
 GUI 프로그램 실행파일(.exe) 클릭하여 아래와 같이 조작
 ![2020-03-24_12h48_37](https://user-images.githubusercontent.com/25470405/77386291-d35c8280-6dcd-11ea-8cd9-1b42f15362fa.png)
 
-### Result Sample
-
-
 ### Demo
 ![ezgif com-video-to-gif (1)](https://user-images.githubusercontent.com/25470405/77300000-b58d1000-6d30-11ea-98d9-eb412cd8724a.gif)
 
@@ -60,6 +57,8 @@ GUI 프로그램 실행파일(.exe) 클릭하여 아래와 같이 조작
       pyinstaller --onefile {파일명}.py
    ```
   ※icon옵션지정으로 커스텀 이미지로 실행파일 아이콘변경도 가능
+
+
 
 
 ## 2. Log Parser
