@@ -14,6 +14,9 @@
 GUI 프로그램 실행파일(.exe) 클릭하여 아래와 같이 조작
 ![2020-03-24_12h48_37](https://user-images.githubusercontent.com/25470405/77386291-d35c8280-6dcd-11ea-8cd9-1b42f15362fa.png)
 
+### Result Sample
+
+
 ### Demo
 ![ezgif com-video-to-gif (1)](https://user-images.githubusercontent.com/25470405/77300000-b58d1000-6d30-11ea-98d9-eb412cd8724a.gif)
 
@@ -56,10 +59,64 @@ GUI 프로그램 실행파일(.exe) 클릭하여 아래와 같이 조작
   ※icon옵션지정으로 커스텀 이미지로 실행파일 아이콘변경도 가능
 
 
-### 2. Log Parser
-로그를 파싱하여 테스트에 필요한 데이터를 수집 및 csv파일로 출력하는 스크립트
+## 2. Log Parser
+LINE api 로그를 파싱하여 테스트에 필요한 데이터수집 후 csv파일로 출력하는 스크립트
   * Using Tools
     + parse, xlrd, xlwt
 
+* 로그추출값 리스트
+
+  - 로그기록시간: YYYY-MM-DD hh:mm:ss
+  - ID
+  - 응답타입: res/req
+  - 이벤트명
+  - 소요시간(ms)
+  - 결과: Success/Callback/Failure
+
+### Usage
+같은 폴더에 LINE_api_logParser.py와 타겟 로그파일을 넣은 뒤 아래 커맨드 입력
+```sh
+  python LINE_api_logParser.py {로그파일명} {출력파일명(.csv)}
+```
+
+### Result Sample
+로그에서 추출된 값들이 csv에 작성됨
+![2020-03-25_17h09_36](https://user-images.githubusercontent.com/25470405/77515336-b56d4b80-6ebb-11ea-9503-b16281d3e406.png)
 
 
+### Demo
+![2020-03-25_16h52_37](https://user-images.githubusercontent.com/25470405/77514103-8950cb00-6eb9-11ea-8907-23f64e0f3e43.gif)
+
+
+### Description
+parse패키지로 추출하는 처리는 아래와 같음
+parse 사용법 상세는 아래 참조
+> https://pypi.org/project/parse/
+
+```python
+  def parse(line):
+
+      # LOG에서 추출하고자 하는 값이 포함된 문자열 존재여부 확인. 여기서는 ”elapsed”로 판단
+      if line.find("elapsed") == -1:
+          return
+
+      # LOG 표시시각 취득
+      time = line[0:19]
+
+      # 추출대상 값들을 Parser의 {:w}로 파싱 > 각 값들은 배열로 반환됨
+      result = search("[{:w}][id={:w}] {:w}[elapsed={:w}ms] result={:w}", line)
+
+      # 파싱결과값들을 CSV형식으로 편집
+      if result:
+          data = time + "," + result[0] + "," + str(result[1]) + ","  + result[2] + ","  + str(result[3]) + ","  + result[4] + "\n"
+          return data
+
+      # 파싱에 실패한 라인 출력
+      print("Error >> ".format(line))
+      return
+```
+    
+
+### References
+* parse 1.15.0
+> https://pypi.org/project/parse/
