@@ -8,7 +8,7 @@
 사실 android-apk-size-watcher같은 젠킨스 플러그인 쓰면 되지만 RPA연습용으로 작성  
 
 * Using Tools
-  +  PyQt5, Selenium, Pyinstaller, PowerMockup, matplotlib, pandas
+  > PyQt5, Selenium, Pyinstaller, PowerMockup, matplotlib, pandas
 
 ### Usage
 GUI 프로그램 실행파일(.exe) 클릭하여 아래와 같이 조작
@@ -27,18 +27,21 @@ GUI 프로그램 실행파일(.exe) 클릭하여 아래와 같이 조작
 ### Trouble Shooting
 
 * PyQt 관련 
-  + PyDesiner.exe 경로<br/>
+  + PyDesiner.exe 경로
+  
     PyDesigner는 UI레이아웃을 하드코딩하는 시간을 절약시켜주지만 실행파일이 넘나 숨겨져있음<br/>
     삽질방지를 위해 경로를 메모해둠
 
     > C:\Users\%USERNAME%\AppData\Local\Programs\Python\Python37\Lib\site-packages\pyqt5_tools\designer.exe
 
-  + PyDesiner로 작성한 .ui파일을 .py로 컨버트 하는 커맨드<br/>
+  + PyDesiner로 작성한 .ui파일을 .py로 컨버트 하는 커맨드
+  
    ```sh
         pyuic5 {input 파일명}.ui -o {output 파일명}.py
    ```
     
-  + pyqt 버튼이벤트 작성방법<br/>
+  + pyqt 버튼이벤트 작성방법
+  
     디자이너에서 생성된 코드를 동작시키려면 @pyqtSlot으로 event lisner를 작성해서 버튼에 연결시켜 줘야함
    ```python
       # 실행버튼 이벤트 
@@ -62,7 +65,7 @@ GUI 프로그램 실행파일(.exe) 클릭하여 아래와 같이 조작
 ## 2. Log Parser
 LINE api 로그를 파싱하여 테스트에 필요한 데이터수집 후 csv파일로 출력하는 스크립트
   * Using Tools
-    + parse, xlrd, xlwt
+    > parse
 
 * 로그추출값 리스트
 
